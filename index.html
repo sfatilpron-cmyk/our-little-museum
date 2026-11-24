@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160d22">
+<title>Azizul & Patrycia — Our Little Museum</title>
+<style>
+:root{--gold:#f4d69a;--cream:#fff5e6;--pink:#ffb6ca;--ink:#160d22}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% 10%,#50305b 0,#21152e 42%,#100b19 100%);color:var(--cream);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent)}
+header{min-height:100svh;display:grid;place-items:center;text-align:center;padding:36px 20px;position:relative}
+.hero{max-width:850px;animation:rise 1.2s ease both}
+.eyebrow{letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font:12px Arial,sans-serif}
+h1{font-size:clamp(42px,8vw,88px);line-height:1.02;margin:22px 0;color:#fff0d2;text-shadow:0 8px 35px #0008}
+h1 span{display:block;color:var(--pink);font-style:italic;font-size:.7em;margin:12px 0}
+.lead{font:16px/1.8 Arial,sans-serif;color:#eadbea;max-width:580px;margin:0 auto 30px}
+.btn{display:inline-block;border:1px solid var(--gold);padding:14px 25px;border-radius:999px;color:var(--cream);text-decoration:none;letter-spacing:.08em;font:12px Arial,sans-serif;text-transform:uppercase;background:#ffffff0d;cursor:pointer;transition:.25s}
+.btn:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px)}
+.scroll{position:absolute;bottom:24px;color:#d9c4dc;font:10px Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase}
+section{padding:85px 20px;position:relative}
+.section-title{text-align:center;margin:0 auto 14px;font-size:clamp(30px,5vw,48px);color:var(--gold)}
+.section-sub{text-align:center;color:#d7c6d9;font:14px/1.7 Arial,sans-serif;max-width:600px;margin:0 auto 48px}
+.gallery{max-width:1050px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;perspective:1000px}
+.frame{background:linear-gradient(145deg,#f9e5bc,#b78a57);padding:12px 12px 18px;box-shadow:0 22px 40px #0008;transform:rotateY(var(--turn,0deg)) rotateX(2deg);transition:.4s}
+.frame:hover{transform:translateY(-10px) rotateY(0) scale(1.025)}
+.photo{height:240px;background:linear-gradient(145deg,#432b4d,#21182b);display:grid;place-items:center;position:relative;overflow:hidden;color:#f6d9e4;text-align:center;padding:20px;font:13px/1.6 Arial,sans-serif}
+.photo:before{content:"♡";position:absolute;font-size:150px;color:#ffffff12}
+.photo span{position:relative}
+.caption{color:#49302e;text-align:center;padding-top:13px;font-size:18px;font-style:italic}
+.room{max-width:1000px;margin:auto;min-height:390px;border:1px solid #e8c98a55;border-radius:18px;background:linear-gradient(135deg,#ffffff0c,#ffffff03);box-shadow:inset 0 0 70px #e6c27c12,0 25px 70px #0005;padding:36px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.room:after{content:"";position:absolute;inset:auto 0 0;height:5px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.room h3{font-size:34px;color:var(--gold);margin:0 0 15px}
+.room p{font:15px/1.9 Arial,sans-serif;color:#eadbea}
+.heart-art{height:250px;display:grid;place-items:center;perspective:600px}
+.heart{font-size:150px;color:#ff9ebc;text-shadow:0 0 35px #ff6f9b;animation:float 3s ease-in-out infinite;transform:rotateY(-18deg)}
+.letter{max-width:760px;margin:auto;padding:42px 35px;border:1px solid #e8c98a88;background:linear-gradient(135deg,#fff9e9,#ead3bd);color:#38253a;box-shadow:0 25px 60px #0008;transform:rotate(-1deg)}
+.letter h3{text-align:center;font-size:34px;margin:0 0 20px;color:#8d4563}
+.letter p{font-size:18px;line-height:1.9}
+.proposal{text-align:center;max-width:800px;margin:auto;padding:55px 25px;border:1px solid #e8c98a66;border-radius:22px;background:radial-gradient(ellipse,#57314e,#21152e 70%);box-shadow:0 25px 70px #0007}
+.proposal h2{font-size:clamp(34px,6vw,58px);color:#ffe2ac;margin:12px 0}
+.proposal p{font:15px/1.8 Arial,sans-serif;color:#f0ddeb}
+.actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+#answer{min-height:30px;color:#ffd2df;font-size:22px;margin-top:22px}
+footer{text-align:center;padding:35px 20px 55px;color:#bca8c4;font:12px Arial,sans-serif;letter-spacing:.08em}
+.music-note{position:fixed;right:16px;bottom:16px;z-index:5;background:#24152f;border:1px solid #e8c98a77;color:var(--gold);border-radius:50px;padding:12px 16px;font:12px Arial,sans-serif;cursor:pointer}
+@keyframes float{0%,100%{transform:translateY(0) rotateY(-18deg)}50%{transform:translateY(-18px) rotateY(18deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media(max-width:720px){.gallery{grid-template-columns:1fr;max-width:420px}.photo{height:220px}.room{grid-template-columns:1fr;padding:26px}.heart-art{height:150px}.heart{font-size:110px}.letter{padding:30px 22px}.letter p{font-size:16px}}
+</style>
+</head>
+<body>
+<header id="top">
+  <div class="hero">
+    <div class="eyebrow">A little place made with love</div>
+    <h1>Azizul <span>&</span> Patrycia</h1>
+    <p class="lead">Welcome to our little museum — a place for our memories, our smiles, and all the beautiful moments still waiting for us.</p>
+    <a class="btn" href="#museum">Enter the museum</a>
+  </div>
+  <div class="scroll">Scroll to explore ↓</div>
+</header>
+
+<section id="museum">
+  <h2 class="section-title">The Gallery of Us</h2>
+  <p class="section-sub">Every memory deserves a frame. Replace these three placeholders with your favourite photos together.</p>
+  <div class="gallery">
+    <div class="frame" style="--turn:-5deg"><div class="photo" style="padding:0"><img src="photo1.jpg" alt="Patrycia smiling" style="width:100%;height:100%;object-fit:cover"></div><div class="caption">Your beautiful smile</div></div>
+    <div class="frame"><div class="photo" style="padding:0"><img src="photo2.png" alt="Patrycia outdoors" style="width:100%;height:100%;object-fit:cover"></div><div class="caption">A lovely moment</div></div>
+    <div class="frame" style="--turn:5deg"><div class="photo"><span>♡<br>More memories to come<br><small>Our story is still being written</small></span></div><div class="caption">Always us</div></div>
+  </div>
+  <div style="max-width:340px;margin:55px auto 0;text-align:center">
+    <div class="frame" style="transform:rotate(2deg)">
+      <div class="photo" style="padding:0;height:360px">
+        <img src="azizul.jpg" alt="Azizul Hoque" style="width:100%;height:100%;object-fit:cover">
+      </div>
+      <div class="caption">And here's me — Azizul</div>
+    </div>
+    <p style="font:13px/1.7 Arial,sans-serif;color:#d7c6d9;margin-top:22px">Two hearts, one little museum. ♡</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">A Room Full of Feelings</h2>
+  <p class="section-sub">Some things are too special to fit inside a photograph.</p>
+  <div class="room">
+    <div><h3>To my Patrycia</h3><p>Your presence makes ordinary days feel special. I hope this little museum reminds you how precious you are to me. May we keep collecting reasons to smile, places to visit, and memories to treasure.</p></div>
+    <div class="heart-art"><div class="heart">♥</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">A Little Love Letter</h2>
+  <p class="section-sub">A few words from Azizul, with all his heart.</p>
+  <article class="letter">
+    <h3>My dearest Patrycia,</h3>
+    <p>I made this little place just for you. It may be made of pixels and code, but every part of it carries a real thought: you are special to me.</p>
+    <p>Thank you for being you. I look forward to all the chapters we have yet to write, all the laughter we have yet to share, and all the memories still ahead of us.</p>
+    <p style="text-align:right;font-style:italic">With love,<br><strong>Azizul Hoque</strong> ♡</p>
+  </article>
+</section>
+
+<section>
+  <div class="proposal">
+    <div class="eyebrow">One last room · One little question</div>
+    <div style="font-size:54px;margin:15px">💍</div>
+    <h2>Patrycia, will you make<br>more memories with me?</h2>
+    <p>There are so many beautiful moments still waiting for us.</p>
+    <div class="actions">
+      <button class="btn" onclick="sayYes()">Yes, of course! ♡</button>
+      <button class="btn" onclick="sayMaybe()">Let me hug you first</button>
+    </div>
+    <div id="answer" aria-live="polite"></div>
+  </div>
+</section>
+<footer>Made with love by Azizul Hoque · For Patrycia Malota</footer>
+<button class="music-note" id="musicBtn" onclick="toggleMusic()">♫ Music: off</button>
+<audio id="music" loop>
+  <!-- Add a royalty-free MP3 named music.mp3 in this folder to enable music. -->
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<script>
+function sayYes(){document.getElementById('answer').textContent='You just made my day, Patrycia! ❤️'; hearts();}
+function sayMaybe(){document.getElementById('answer').textContent='Sending you the biggest virtual hug! 🤗❤️'; hearts();}
+function hearts(){for(let i=0;i<18;i++){const h=document.createElement('span');h.textContent='♥';h.style.cssText=`position:fixed;left:${Math.random()*100}vw;top:105vh;color:#ff9ebc;font-size:${18+Math.random()*24}px;z-index:10;pointer-events:none;transition:transform 3s linear,opacity 3s;`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translateY(-110vh) rotate(${Math.random()*240}deg)`;h.style.opacity='0'});setTimeout(()=>h.remove(),3100)}}
+async function toggleMusic(){const a=document.getElementById('music');const b=document.getElementById('musicBtn');if(a.paused){try{await a.play();b.textContent='♫ Music: on'}catch(e){b.textContent='Add music.mp3 first'}}else{a.pause();b.textContent='♫ Music: off'}}
+</script>
+</body>
+</html>
